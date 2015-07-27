@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html ng-app='Demo'>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<title>Tic Tac Toe</title>
+		
+		<link rel="stylesheet" type="text/css" href="app/css/demo.css"></link>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	</head>
+	<body>
+		<div class="col-md-4 col-sm-4 col-xs-4"></div>
+		<div class=" col-md-3 col-sm-4 col-xs-3"><h1>Tic Tac Toe</h1><br></div><div class='clearall'></div>
+		<div class="col-md-4 col-sm-4 col-xs-4"></div>
+		<div class=" col-md-3 col-sm-4 col-sm-3"><h2>Select Your Symbol</h2><br><br></div><div class='clearall'></div>
+		<div class='selection' ng-controller='MasterController' ng-init="selectedSymbol = ''" >
+			<div class=" col-md-4 col-sm-4 col-xs-4"></div>
+			<div  ng-repeat="symbol in symbols" ng-model="selectedSymbol" ng-show="selectedSymbol == ''">
+				<a class='col-xs-1 box' id={{symbol.definition}} ng-click="remove(symbol); user= symbol.definition" ><big  class='fixed'>{{symbol.definition}}</big></a>
+    		</div>
+			<div class='clearall'></div>
+			<div class="col-md-4 col-sm-2 col-xs-2"></div>
+			<div class=' col-md-4 col-sm-6 col-xs-6 row selected' ng-show="selectedSymbol != ''"> 
+			   You selected &nbsp;&nbsp;<div class='col-xs-2 box'><big class='fixed'>{{selectedSymbol}}</big></div>
+			   
+			</div>
+			<div class=' col-md-4 col-sm-4 col-xs-4 row selected' ng-show="selectedSymbol != ''" > 
+			Level &nbsp;<select ng-options="l as l.definition for l in levels" ng-change='changeLevel(l)'  ng-model="selectedLevel" ng-disabled="levelFlag">
+									<!--<option ng-selected={{level.value == selectedLevel.option}}  ng-repeat="level in levels" value={{level.value}}  >
+			   							{{level.definition}}
+									</option>-->
+			   			</select>
+			</div>
+			<div class='clearall'></div>
+			<div class='mark' ng-show="showGrid()">
+				<div class="col-md-4 col-sm-4 col-xs-4"></div>
+				<div class="col-md-6 col-sm-6 col-xs-6">Click on Box, Where you Want to place your Symbol</div>
+				<div class="col-md-2 col-sm-2 col-xs-2"></div>
+				<div class="col-md-4 col-sm-4 col-xs-4"><span ng-show='userWin != 0' >User Wins : {{userWin}}</span></div>
+				<div class="col-sm-1 col-xs-1 rbbb" ng-click="addToUserArray(1)" ng-if="clicked[1]" ng-class="{true: 'backGroundWhite', false: 'backGroundImage'}[classFlag[1] == true]">{{commonSymbol[1]}}</div>
+				<div class="col-sm-1 col-xs-1 rblbbb" ng-click="addToUserArray(2)" ng-if="clicked[2]" ng-class="{true: 'backGroundWhite', false: 'backGroundImage'}[classFlag[2] == true]">{{commonSymbol[2]}}</div>
+				<div class="col-sm-1 col-xs-1 lbbb" ng-click="addToUserArray(3)" ng-if="clicked[3]" ng-class="{true: 'backGroundWhite', false: 'backGroundImage'}[classFlag[3] == true]"> {{commonSymbol[3]}}</div>
+				<div class='clearall'></div>
+				<div class="col-md-4 col-sm-4 col-xs-4" ><span ng-show='systemWin != 0' >System Wins : {{systemWin}}</span></div>
+				<div class="col-xs-1 col-sm-1  rbbbtb" ng-click="addToUserArray(4)" ng-if="clicked[4]" ng-class="{true: 'backGroundWhite', false: 'backGroundImage'}[classFlag[4] == true]">{{commonSymbol[4]}}</div>
+				<div class="col-xs-1 col-sm-1 rblbbbtb" ng-click="addToUserArray(5)" ng-if="clicked[5]" ng-class="{true: 'backGroundWhite', false: 'backGroundImage'}[classFlag[5] == true]">{{commonSymbol[5]}}</div>
+				<div class="col-xs-1 col-sm-1 lbbbtb" ng-click="addToUserArray(6)" ng-if="clicked[6]" ng-class="{true: 'backGroundWhite', false: 'backGroundImage'}[classFlag[6] == true]">{{commonSymbol[6]}}</div>
+				<div class='clearall'></div>
+				<div class="col-md-4 col-sm-4 col-xs-4"><span ng-show='draw != 0' >Draw : {{draw}}</span></div>
+				<div class="col-xs-1 col-sm-1 rbtb" ng-click="addToUserArray(7)" ng-if="clicked[7]" ng-class="{true: 'backGroundWhite', false: 'backGroundImage'}[classFlag[7] == true]">{{commonSymbol[7]}}</div>
+				<div class="col-xs-1 col-sm-1 rblbtb" ng-click="addToUserArray(8)" ng-if="clicked[8]" ng-class="{true: 'backGroundWhite', false: 'backGroundImage'}[classFlag[8] == true]">{{commonSymbol[8]}}</div>
+				<div class="col-xs-1 col-sm-1 lbtb" ng-click="addToUserArray(9)" ng-if="clicked[9]" ng-class="{true: 'backGroundWhite', false: 'backGroundImage'}[classFlag[9] == true]">{{commonSymbol[9]}}</div>
+				<div class='clearall'></div>
+				<div class="col-md-5 col-sm-5 col-xs-5"></div>
+				<div class="col-md-3 col-sm-5 col-xs-5"><big>{{result}}</big></div>
+				<div class="col-md-4 col-sm-2 col-xs-2"></div>	
+			</div>
+			<div class="col-md-5 col-sm-5 col-xs-5">
+				
+			</div>
+			<div class="col-md-3 col-sm-5 col-xs-5" ng-show="! canClick">
+				<button ng-click='playAgain()'>Play Again</button>
+			</div>
+			<div class="col-md-4 col-sm-2 col-xs-2"></div>	
+			
+		</div><br>
+		
+	</body>
+	
+	<!-- Load jQuery and AngularJS from the CDN. -->
+	<script
+		type="text/javascript"
+		src="//code.jquery.com/jquery-1.9.0.min.js">
+	</script>
+	<script
+		type="text/javascript"
+		src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js">
+	</script>
+
+	<!-- Load the app module and its classes. -->
+	
+	<script type="text/javascript" src="app/main.js"></script>
+	<script type="text/javascript" src="app/controllers/master-controller.js"></script>
+
+</html>
+

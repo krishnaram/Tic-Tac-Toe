@@ -1,0 +1,113 @@
+
+body {
+	font-family: tahoma, geneva, sans-serif ;
+	margin: 0px 0px 0px 0px ;
+	padding: 0px 0px 0px 0px ;
+}
+
+h1 {
+	color: #ECE0F8 !important;
+	
+	position: fixed ;
+	
+	z-index: 999 ;
+}
+.box{
+	border-style: solid;
+	margin-left: 30px;
+}
+.selected{
+	margin-top: 50px;
+	font-size: 40px;
+	margin-bottom: 50px;
+}
+.rbbb{
+	border-bottom: solid;
+	border-right: solid;
+	height: 60px !important;
+	font-size: 40px;
+}
+.rblbbb{
+	border-bottom: solid;
+	border-right: solid;
+	border-left: solid;
+	height: 60px !important;
+	font-size: 40px;
+}
+.lbbb{
+	border-bottom: solid;
+	border-left: solid;
+	height: 60px !important;
+	font-size: 40px;
+}
+.backGroundWhite{
+	
+}
+.backGroundImage{
+	background-image: url("../wrong.png");
+	 background-size: 100px 60px;
+	 background-repeat: no-repeat;
+}
+.rbbbtb{
+	border-bottom: solid;
+	border-right: solid;
+	border-top: solid;
+	height: 60px !important;
+	font-size: 40px;
+}
+.rblbbbtb{
+	border-bottom: solid;
+	border-right: solid;
+	border-left: solid;
+	border-top: solid;
+	height: 60px !important;
+	font-size: 40px;
+}
+.lbbbtb{
+	border-bottom: solid;
+	border-left: solid;
+	border-top: solid;
+	height: 60px !important;
+	font-size: 40px;
+}
+.rbtb{
+	border-right: solid;
+	border-top: solid;
+	height: 60px !important;
+	font-size: 40px;
+}
+.rblbtb{
+	border-right: solid;
+	border-left: solid;
+	border-top: solid;
+	height: 60px !important;
+	font-size: 40px;
+}
+.lbtb{
+	border-left: solid;
+	border-top: solid;
+	height: 60px !important;
+	font-size: 40px;
+}
+.clearall{
+	clear:both;
+}
+.selection{
+	margin-top: 100px;
+}
+.symbols{
+	float:left;
+}
+.fixed{
+	font-size: 40px;
+	text-align: center;
+}
+
+h2 {
+	color: #6E6E6E !important;
+	
+	position: fixed ;
+	margin-top: 25px !important;
+	z-index: 999 ;
+}
+
